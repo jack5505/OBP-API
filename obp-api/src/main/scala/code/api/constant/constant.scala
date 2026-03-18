@@ -24,7 +24,13 @@ object Constant extends MdcLoggable {
 
   final val h2DatabaseDefaultUrlValue = "jdbc:h2:mem:OBPTest_H2_v2.1.214;NON_KEYWORDS=VALUE;DB_CLOSE_DELAY=10"
 
-  final val HostName = APIUtil.getPropsValue("hostname").openOrThrowException(ErrorMessages.HostnameNotSpecified)
+  final val HostName = {
+    val defaultHostname = "http://127.0.0.1:8080"
+    if (APIUtil.getPropsValue("hostname").isEmpty) {
+      logger.warn(s"hostname not specified in properties file. Using default: $defaultHostname. ${ErrorMessages.HostnameNotSpecified}")
+    }
+    APIUtil.getPropsValue("hostname", defaultHostname)
+  }
   final val CONNECTOR = APIUtil.getPropsValue("connector")
   final val openidConnectEnabled = APIUtil.getPropsAsBoolValue("openid_connect.enabled", false)
 
