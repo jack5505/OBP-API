@@ -205,7 +205,7 @@ class Boot extends MdcLoggable {
     } yield {
       Props.toTry.map {
         f => {
-          val contextPath = LiftRules.context.path
+          val contextPath = if (LiftRules.context != null) LiftRules.context.path else ""
           val name = propsPath + contextPath + f() + "props"
           name -> { () => tryo{new FileInputStream(new File(name))} }
         }
