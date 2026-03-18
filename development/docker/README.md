@@ -23,7 +23,7 @@ This Docker Compose setup provides a complete **live development environment** f
 1. **Prerequisites**
    - Docker and Docker Compose installed
    - Local PostgreSQL database running
-   - Props file configured at `obp-api/src/main/resources/props/default.props`
+   - Props file at `obp-api/src/main/resources/props/production.default.props` (included by default)
 
 2. **Start services**
    ```bash

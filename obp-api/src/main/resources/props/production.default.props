@@ -1,0 +1,61 @@
+# OBP-API Production Default Properties
+# See https://www.assembla.com/wiki/show/liftweb/Properties for Lift properties naming conventions.
+#
+# This file provides default settings when running in production mode (run.mode=production).
+# It is loaded automatically by Lift when no more specific props file is found.
+#
+# IMPORTANT: Sensitive values (passwords, secrets) should be supplied via environment variables.
+# OBP-API maps environment variables to properties automatically:
+#   Property name    -> Environment variable
+#   db.url           -> OBP_DB_URL
+#   cache.redis.url  -> OBP_CACHE_REDIS_URL
+#   cache.redis.port -> OBP_CACHE_REDIS_PORT
+#   hostname         -> OBP_HOSTNAME
+#
+# Do NOT use trailing or leading spaces in values.
+
+### Connector
+# Which data connector to use.
+connector=star
+starConnector_supported_types=mapped,internal
+
+### Hostname
+# The externally-accessible base URL of this OBP-API instance.
+# Required for OAuth and other absolute URL generation.
+# Override with OBP_HOSTNAME environment variable.
+hostname=http://127.0.0.1:8080
+
+### Database
+# Default: H2 in-memory database (no external dependency required).
+# Override with OBP_DB_URL environment variable for PostgreSQL or other databases.
+db.driver=org.h2.Driver
+db.url=jdbc:h2:mem:OBPDev;NON_KEYWORDS=VALUE;DB_CLOSE_DELAY=-1
+
+### Redis Cache
+# Default Redis connection settings.
+# Override with OBP_CACHE_REDIS_URL and OBP_CACHE_REDIS_PORT environment variables.
+cache.redis.url=127.0.0.1
+cache.redis.port=6379
+
+### Metrics
+# Disable metrics writing by default to avoid database bloat on fresh installs.
+write_metrics=false
+write_connector_metrics=false
+
+### Cache TTLs (seconds)
+dynamicEntity.cache.ttl.seconds=30
+dynamicEndpoint.cache.ttl.seconds=32
+validation.cache.ttl.seconds=34
+authTypeValidation.cache.ttl.seconds=36
+connectorMethod.cache.ttl.seconds=40
+dynamicResourceDocsObp.cache.ttl.seconds=3600
+staticResourceDocsObp.cache.ttl.seconds=3600
+createLocalisedResourceDocJson.cache.ttl.seconds=3600
+
+### Endpoint timeouts (milliseconds)
+short_endpoint_timeout=1000
+medium_endpoint_timeout=7000
+long_endpoint_timeout=55000
+
+### JWT
+jwt.use.ssl=false
