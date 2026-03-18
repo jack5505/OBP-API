@@ -17,8 +17,8 @@ COPY web-app_2_3.dtd .
 
 EXPOSE 8080
 
-# Build the project, skip tests to speed up
-RUN mvn install -pl .,obp-commons -am -DskipTests
+# Build all modules (obp-commons + obp-api) and create the executable fat JAR
+RUN mvn install -DskipTests
 
 # Copy entrypoint script that runs mvn with needed JVM flags
 COPY development/docker/entrypoint.sh /app/entrypoint.sh

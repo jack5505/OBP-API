@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-#!/bin/bash
-set -e
-
 exec java \
   --add-opens=java.base/java.util.jar=ALL-UNNAMED \
   --add-opens=java.base/java.lang=ALL-UNNAMED \
