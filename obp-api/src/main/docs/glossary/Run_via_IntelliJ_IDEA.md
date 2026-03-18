@@ -105,6 +105,10 @@ OBP-API reads configuration from a props file at startup.
 
    ```
    -Xms1G -Xmx3G -Xss2m -XX:MaxMetaspaceSize=512m
+   --add-opens=java.base/java.util=ALL-UNNAMED
+   --add-opens=java.base/sun.security.util=ALL-UNNAMED
+   --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
+   --add-opens=java.base/sun.reflect=ALL-UNNAMED
    --add-opens=java.base/java.lang=ALL-UNNAMED
    --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
    --add-opens=java.base/java.security=ALL-UNNAMED
